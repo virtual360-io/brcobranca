@@ -7,6 +7,16 @@ module Brcobranca
       # Usado somente em carteiras especiais com registro para complementar o número do cocumento
       attr_reader :seu_numero
 
+      attr_accessor :cod_banco
+      # <b>REQUERIDO</b>: Informar qual o fator de vencimento
+      attr_accessor :fator_vencimento
+      # <b>REQUERIDO</b>: Informar qual o documento formatado
+      attr_accessor :valor_documento_formatado
+      # <b>REQUERIDO</b>: Informar qual o documento formatado
+      attr_accessor :codigo_barras_segunda_parte
+      # <b>REQUERIDO</b>: Informar qual o documento formatado
+      attr_accessor :codigo_barras
+
       validates_length_of :agencia, maximum: 4, message: 'deve ser menor ou igual a 4 dígitos.'
       validates_length_of :convenio, maximum: 5, message: 'deve ser menor ou igual a 5 dígitos.'
       validates_length_of :nosso_numero, maximum: 8, message: 'deve ser menor ou igual a 8 dígitos.'
@@ -19,6 +29,15 @@ module Brcobranca
       def initialize(campos = {})
         campos = { carteira: '175' }.merge!(campos)
         super(campos)
+      end
+
+      def codigo_barras=(valor)
+        self.cod_banco = valor[0..2]
+        self.moeda = valor[3..3]
+        self.fator_vencimento = valor[5..8]
+        self.valor_documento_formatado = valor[9..18]
+        self.codigo_barras_segunda_parte = valor[19..43]
+        @codigo_barras = valor
       end
 
       # Codigo do banco emissor (3 dígitos sempre)
