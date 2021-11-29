@@ -108,6 +108,7 @@ module Brcobranca
     autoload :Sicredi,       'brcobranca/boleto/sicredi'
     autoload :Unicred,       'brcobranca/boleto/unicred'
     autoload :Santander,     'brcobranca/boleto/santander'
+    autoload :Generic,     'brcobranca/boleto/generic'
     autoload :Banestes,      'brcobranca/boleto/banestes'
     autoload :Banrisul,      'brcobranca/boleto/banrisul'
     autoload :Credisis,      'brcobranca/boleto/credisis'
